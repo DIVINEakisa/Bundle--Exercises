@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Team</title>
+    <style>
+      :root {
+        --bg: #0f172a; /* slate-900 */
+        --card: #111827; /* gray-900 */
+        --muted: #94a3b8; /* slate-400 */
+        --text: #e5e7eb; /* gray-200 */
+        --accent: #22d3ee; /* cyan-400 */
+        --accent-2: #a78bfa; /* violet-400 */
+        --ring: rgba(34, 211, 238, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: radial-gradient(
+            1200px 600px at 10% -10%,
+            rgba(167, 139, 250, 0.15),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 110% 10%,
+            rgba(34, 211, 238, 0.12),
+            transparent 60%
+          ),
+          var(--bg);
+        color: var(--text);
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px 20px 48px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+      .logo {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #0b1020;
+        font-weight: 900;
+      }
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 600;
+        margin: 0 8px;
+      }
+      nav a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 24px 0 8px;
+      }
+      .eyebrow {
+        display: inline-block;
+        padding: 6px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.4px;
+      }
+      h1 {
+        margin: 10px 0 8px;
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.1;
+      }
+      .sub {
+        color: var(--muted);
+        max-width: 65ch;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+        margin-top: 28px;
+      }
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(8, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .card {
+        grid-column: span 4;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        transition: transform 0.25s ease, box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        position: relative;
+        isolation: isolate;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(34, 211, 238, 0.45);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      .banner {
+        aspect-ratio: 16/9;
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(34, 211, 238, 0.15),
+          rgba(167, 139, 250, 0.18)
+        );
+        position: relative;
+      }
+      .avatar {
+        width: 84px;
+        height: 84px;
+        border-radius: 18px;
+        border: 3px solid var(--bg);
+        position: absolute;
+        left: 16px;
+        bottom: -36px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .content {
+        padding: 48px 16px 16px;
+      }
+      .name {
+        font-weight: 800;
+        font-size: 20px;
+        margin: 0;
+      }
+      .role {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 4px 0 10px;
+      }
+      .bio {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 14px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 10px 0 14px;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 6px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        color: #c7d2fe;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .links {
+        display: flex;
+        gap: 10px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--text);
+      }
+      .btn:hover {
+        border-color: var(--ring);
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+      }
+      .footer {
+        margin-top: 36px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="logo">T</div>
+          <span>Team</span>
+        </div>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#team">Team</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <span class="eyebrow">Meet the crew</span>
+        <h1>People behind the product</h1>
+        <p class="sub">
+          We’re a small, multidisciplinary team that loves building delightful
+          digital experiences. Here are the folks making it happen every day.
+        </p>
+      </section>
+
+      <section id="team" class="grid">
+        <!-- Card 1 -->
+        <article class="card">
+          <div class="banner"></div>
+          <div class="avatar">
+            <img
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop"
+              alt="Ava Patel"
+            />
+          </div>
+          <div class="content">
+            <h3 class="name">Ava Patel</h3>
+            <div class="role">Product Manager</div>
+            <p class="bio">
+              Turns ideas into roadmaps and roadmaps into shipped features.
+              Loves coffee and concise PRDs.
+            </p>
+            <div class="tags">
+              <span class="tag">Product</span>
+              <span class="tag">Strategy</span>
+              <span class="tag">Agile</span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="links">
+              <a class="btn" href="#" aria-label="LinkedIn">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zM8 8h3.8v2.2h.1C12.7 8.7 14.4 8 16.3 8 21 8 24 10.9 24 16.1V24h-4v-7c0-1.7-.03-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"
+                  />
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a class="btn" href="#" aria-label="GitHub">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58V20.9c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.09-.74.09-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.32 3.52 1 .11-.8.42-1.32.76-1.63-2.66-.31-5.46-1.33-5.46-5.9 0-1.3.47-2.36 1.24-3.19-.12-.3-.54-1.54.12-3.2 0 0 1.01-.32 3.3 1.22.96-.27 2-.41 3.03-.41s2.07.14 3.03.41c2.29-1.54 3.3-1.22 3.3-1.22.66 1.66.24 2.9.12 3.2.77.83 1.24 1.9 1.24 3.2 0 4.59-2.8 5.59-5.47 5.89.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.83.57A12 12 0 0012 .5z"
+                  />
+                </svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+            <a class="btn" href="mailto:ava@company.com">Contact</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card">
+          <div class="banner"></div>
+          <div class="avatar">
+            <img
+              src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=300&auto=format&fit=crop"
+              alt="Kwizera Eric"
+            />
+          </div>
+          <div class="content">
+            <h3 class="name">Kwizera Eric</h3>
+            <div class="role">Lead Engineer</div>
+            <p class="bio">
+              Writes clean code and reviews even cleaner. Obsessed with DX and
+              performance budgets.
+            </p>
+            <div class="tags">
+              <span class="tag">React</span><span class="tag">Node</span
+              ><span class="tag">CI/CD</span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="links">
+              <a class="btn" href="#" aria-label="Twitter">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 001.88-2.37 8.55 8.55 0 01-2.71 1.04 4.27 4.27 0 00-7.3 3.9A12.1 12.1 0 013 4.9a4.26 4.26 0 001.32 5.7 4.23 4.23 0 01-1.93-.53v.06a4.27 4.27 0 003.43 4.19 4.3 4.3 0 01-1.92.07 4.28 4.28 0 003.99 2.96A8.58 8.58 0 012 19.54a12.09 12.09 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2l-.01-.56A8.71 8.71 0 0024 5.5c-.86.38-1.78.63-2.74.74z"
+                  />
+                </svg>
+                <span>Twitter</span>
+              </a>
+            </div>
+            <a class="btn" href="mailto:eric@company.com">Contact</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card">
+          <div class="banner"></div>
+          <div class="avatar">
+            <img
+              src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=300&auto=format&fit=crop"
+              alt="Divine Akisa"
+            />
+          </div>
+          <div class="content">
+            <h3 class="name">Divine Akisa</h3>
+            <div class="role">UI/UX Designer</div>
+            <p class="bio">
+              Designs accessible, joyful interfaces. Believes pixels should have
+              purpose.
+            </p>
+            <div class="tags">
+              <span class="tag">Figma</span><span class="tag">Prototyping</span
+              ><span class="tag">Accessibility</span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="links">
+              <a class="btn" href="#" aria-label="Dribbble">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm6.78 6.62a8.28 8.28 0 01-3.62 1.06 25.38 25.38 0 00-1.74-3.07 8.32 8.32 0 015.36 2.01zM12 3.72a8.28 8.28 0 014.1 1.09 23.77 23.77 0 011.93 3.36 8.26 8.26 0 01-3.7 1.16 36.94 36.94 0 00-2.4-4.2A8.2 8.2 0 0112 3.72zM8.9 4.64A35.69 35.69 0 0111.4 8a8.3 8.3 0 01-6.38-.2A8.35 8.35 0 018.92 4.64zM3.72 12a8.24 8.24 0 01.19-1.74 10.57 10.57 0 006.87.15 35.73 35.73 0 01.77 3.64 8.25 8.25 0 01-7.83-2.05zM12 20.28a8.26 8.26 0 01-5.8-2.4 7.76 7.76 0 012.75-4.38 33.41 33.41 0 012.06 5.29 8.2 8.2 0 011-.06zm2.73-.39a35.07 35.07 0 00-2.27-5.7 9.03 9.03 0 013.77-.62 8.27 8.27 0 01-1.5 6.32zM17.4 18.6a9.9 9.9 0 001.83-6.35c-1.53-.08-3.82.02-5.45.7a36.5 36.5 0 012.47 5.65 8.17 8.17 0 001.15-.01z"
+                  />
+                </svg>
+                <span>Portfolio</span>
+              </a>
+            </div>
+            <a class="btn" href="mailto:divine@company.com">Contact</a>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card">
+          <div class="banner"></div>
+          <div class="avatar">
+            <img
+              src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=300&auto=format&fit=crop"
+              alt="Yasmin Mutesi"
+            />
+          </div>
+          <div class="content">
+            <h3 class="name">Yasmin Mutesi</h3>
+            <div class="role">QA Engineer</div>
+            <p class="bio">
+              Breaks things so customers don’t have to. Pixel detective and
+              automation enthusiast.
+            </p>
+            <div class="tags">
+              <span class="tag">Cypress</span><span class="tag">Playwright</span
+              ><span class="tag">API</span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="links">
+              <a class="btn" href="#" aria-label="LinkedIn">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zM8 8h3.8v2.2h.1C12.7 8.7 14.4 8 16.3 8 21 8 24 10.9 24 16.1V24h-4v-7c0-1.7-.03-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24H8V8z"
+                  />
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+            <a class="btn" href="mailto:yasmin@company.com">Contact</a>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card">
+          <div class="banner"></div>
+          <div class="avatar">
+            <img
+              src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=300&auto=format&fit=crop"
+              alt="Jules Niyonsenga"
+            />
+          </div>
+          <div class="content">
+            <h3 class="name">Jules Niyonsenga</h3>
+            <div class="role">Backend Engineer</div>
+            <p class="bio">
+              APIs, databases, and a healthy respect for timeouts. Docker
+              whisperer.
+            </p>
+            <div class="tags">
+              <span class="tag">PostgreSQL</span><span class="tag">Express</span
+              ><span class="tag">Docker</span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="links">
+              <a class="btn" href="#" aria-label="GitHub">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58V20.9c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.09-.74.09-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.32 3.52 1 .11-.8.42-1.32.76-1.63-2.66-.31-5.46-1.33-5.46-5.9 0-1.3.47-2.36 1.24-3.19-.12-.3-.54-1.54.12-3.2 0 0 1.01-.32 3.3 1.22.96-.27 2-.41 3.03-.41s2.07.14 3.03.41c2.29-1.54 3.3-1.22 3.3-1.22.66 1.66.24 2.9.12 3.2.77.83 1.24 1.9 1.24 3.2 0 4.59-2.8 5.59-5.47 5.89.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.83.57A12 12 0 0012 .5z"
+                  />
+                </svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+            <a class="btn" href="mailto:jules@company.com">Contact</a>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="card">
+          <div class="banner"></div>
+          <div class="avatar">
+            <img
+              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=300&auto=format&fit=crop"
+              alt="Bella Nyirahabimana"
+            />
+          </div>
+          <div class="content">
+            <h3 class="name">Bella Nyirahabimana</h3>
+            <div class="role">Community Manager</div>
+            <p class="bio">
+              Gives our users a voice and turns feedback into action. Emoji
+              fluent.
+            </p>
+            <div class="tags">
+              <span class="tag">Support</span><span class="tag">Content</span
+              ><span class="tag">Events</span>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="links">
+              <a class="btn" href="#" aria-label="Instagram">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5A5.5 5.5 0 1111.99 20 5.5 5.5 0 0112 7.5zm0 2A3.5 3.5 0 1015.5 13 3.5 3.5 0 0012 9.5zM18 6.2a1 1 0 11-1 1 1 1 0 011-1z"
+                  />
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </div>
+            <a class="btn" href="mailto:bella@company.com">Contact</a>
+          </div>
+        </article>
+      </section>
+
+      <p class="footer">
+        © <span id="year"></span> Your Company. All rights reserved.
+      </p>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
